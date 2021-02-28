@@ -7,7 +7,8 @@
         "name": {
             "top": "Adınız",
             "value": "Adın"
-        }
+        },
+        "search_placeholder": "Ürün Adı Girin"
     },
     "footer": {
         "author": "Mutfak Yapım Dijital Reklam Ajansı",
@@ -32,7 +33,6 @@
         "count": "Adet",
         "add_basket": "Sepete Ekle",
         "select": "Seçiniz"
-
     },
     "routes": {
         "news": "haber",
@@ -56,7 +56,14 @@
         "register": "kayit",
         "account": "hesabim",
         "logout": "cikis",
-        "basket_update": "sepet-guncelle"
+        "basket_update": "sepet-guncelle",
+        "change_city": "sehir-degistir",
+        "change_district": "ilce-degistir",
+        "change_neighborhood": "semt-degistir",
+        "add_address": "adres-ekle",
+        "edit_address": "adres-duzenle",
+        "delete_address": "adres-sil",
+        "render_address": "adres-getir"
     },
     "login": {
         "login": "Giriş Yap",
@@ -67,7 +74,7 @@
         "full_name": "Adınız Soyadınız",
         "phone": "Teleofon",
         "user_name": "Kullanıcı Adı",
-        "forgot_password":"Şifrenizi Unuttunuz Mu?"
+        "forgot_password": "Şifrenizi Unuttunuz Mu?"
     },
     "home": {
         "examine": "İNCELE",
@@ -85,14 +92,14 @@
         "submit": "Gönder"
     },
     "account": {
-        "pass_null":"Şifrenizi Değiştirmek İstemiyorsanız Bu Alanı Boş Bırakınız!"
+        "pass_null": "Şifrenizi Değiştirmek İstemiyorsanız Bu Alanı Boş Bırakınız!",
+        "add_address": "Adres Ekle",
+        "edit_address": "Adres Düzenle",
+        "delete_address": "Adresi Sil"
     },
     "category": {
         "showing": "Adet Ürün Gösteriliyor.",
         "sub_category": "Alt Kategoriler"
-    },
-    "header": {
-        "search_placeholder": "Ürün Adı Girin"
     },
     "basket": {
         "product_image": "Ürün Resmi",
@@ -118,7 +125,7 @@
         "user_empty": "Bu Bilgilere Ait Bir Kullanıcı Bulunmamaktadır.",
         "error_pass": "Şifreniz Hatalı",
         "welcome": "İnternet Mağazamıza Hoşgeldiniz.Yönlendiriliyorsunuz.",
-        "logout":"Hesabınızdan Başarıyla Çıkış Yaptınız" ,
+        "logout": "Hesabınızdan Başarıyla Çıkış Yaptınız",
         "unlogout": "Hesabınızdan Çıkış Yaparken Bir Hata Oluştu",
         "not_mach": "Eşleşmiyor.",
         "account_update_success": "Bilgileriniz Başarıyla Güncellendi",
@@ -131,7 +138,16 @@
         "deleteFavourite": "Ürün Favorilerinizden Silindi.",
         "notDeleteFavourite": "Ürün Favorilerinizden Silinemedi.",
         "basket_null": "Sepetinizde Ürün Bulunmamaktadır.",
-        "basket_update": "Sepetiniz Güncellendi."
+        "basket_update": "Sepetiniz Güncellendi.",
+        "add_address": "Adresiniz Başarıyla Eklendi.",
+        "address_error": "Adres Eklenirken Bir Hata Oluştu, Lütfen Daha Sonra Tekrar Deneyin.",
+        "address_nothing": "Böyle Bir Adres Bulunamadı.",
+        "address_updated": "Adresiniz Başarıyla Güncellendi.",
+        "address_update_nothing": "Adres Güncellenirken Hata Oluştu.",
+        "cancel": "İptal Et",
+        "confirm": "Evet, Sil",
+        "remove_item": "Silmek İstediğinize Emin misiniz?",
+        "remove_item_desc": "Bu Kaydı Silerseniz Kayıt Tekrar Geri Getirilemez."
     },
     "contact": {
         "contact_us": "BİZİMLE İLETİŞİME GEÇİN",

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Artisan;
 use App\Helpers\helpers;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/setstorage', function () {
     Artisan::call('storage:link');
 });
@@ -28,7 +30,7 @@ Route::get('/', function (\Illuminate\Http\Request $request) {
     }
 });
 $languages = \App\Models\Panel\Settings::where("isActive", 1)->get();
-foreach ($languages as $lang):
+foreach ($languages as $lang) :
     $json = Helpers::jsonGet($lang->id);
     Route::group(['namespace' => 'theme', "as" => "theme.", "prefix" => $lang->language], function () use ($json, $lang) {
         Route::group(["lang" => $lang->language], function () use ($json) {
@@ -53,8 +55,15 @@ foreach ($languages as $lang):
             Route::middleware("user-status-theme")->group(function () use ($json) {
                 Route::post("/{$json->routes->add_favourite}", [\App\Http\Controllers\Theme\Product\indexController::class, "addFavourite"])->name($json->routes->add_favourite);
                 Route::post("/{$json->routes->delete_favourite}", [\App\Http\Controllers\Theme\Product\indexController::class, "deleteFavourite"])->name($json->routes->delete_favourite);
+                Route::post("/{$json->routes->change_city}", [\App\Http\Controllers\Theme\Account\indexController::class, "changeCity"])->name($json->routes->change_city);
+                Route::post("/{$json->routes->change_district}", [\App\Http\Controllers\Theme\Account\indexController::class, "changeDistrict"])->name($json->routes->change_district);
+                Route::post("/{$json->routes->change_neighborhood}", [\App\Http\Controllers\Theme\Account\indexController::class, "changeNeighborhood"])->name($json->routes->change_neighborhood);
                 Route::get("/{$json->routes->account}", [\App\Http\Controllers\Theme\Account\indexController::class, "index"])->name($json->routes->account);
                 Route::post("/{$json->routes->account}", [\App\Http\Controllers\Theme\Account\indexController::class, "update"])->name($json->routes->account);
+                Route::post("/{$json->routes->add_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "addAddress"])->name($json->routes->add_address);
+                Route::post("/{$json->routes->edit_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "editAddress"])->name($json->routes->edit_address);
+                Route::post("/{$json->routes->delete_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "deleteAddress"])->name($json->routes->delete_address);
+                Route::post("/{$json->routes->render_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "renderAddress"])->name($json->routes->render_address);
                 Route::get("/{$json->routes->logout}", [\App\Http\Controllers\Theme\Login\indexController::class, "logout"])->name($json->routes->logout);
             });
         });
@@ -92,7 +101,6 @@ Route::group(['namespace' => 'panel', "as" => "panel.", "prefix" => "panel", "mi
                     Route::get("/", [\App\Http\Controllers\Panel\Settings\indexController::class, "index"])->name("index");
                     Route::get("/datatable", [\App\Http\Controllers\Panel\Settings\indexController::class, "datatable"])->name("datatable");
                 });
-
             });
         });
         Route::group(["namespace" => "emailSettings", "as" => "emailSettings.", "prefix" => "email-settings", "title" => "E-mail Ayarları"], function () {
@@ -128,7 +136,7 @@ Route::group(['namespace' => 'panel', "as" => "panel.", "prefix" => "panel", "mi
             Route::post("/ranksetter", [\App\Http\Controllers\Panel\Slider\indexController::class, "rankSetter"])->name("ranksetter");
             Route::post("/isactive", [\App\Http\Controllers\Panel\Slider\indexController::class, "isActiveSetter"])->name("isactive");
         });
-            Route::group(["namespace" => "discountCoupon", "as" => "discountCoupon.", "prefix" => "discountCoupon", "title" => "İndirim Kuponları"], function () {
+        Route::group(["namespace" => "discountCoupon", "as" => "discountCoupon.", "prefix" => "discountCoupon", "title" => "İndirim Kuponları"], function () {
             Route::get("/", [\App\Http\Controllers\Panel\DiscountCoupon\indexController::class, "index"])->name("index");
             Route::get("/create", [\App\Http\Controllers\Panel\DiscountCoupon\indexController::class, "create"])->name("add");
             Route::get("/update/{id}", [\App\Http\Controllers\Panel\DiscountCoupon\indexController::class, "edit"])->name("edit");

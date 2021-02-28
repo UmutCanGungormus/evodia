@@ -7,9 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Theme\City;
 use App\Models\Theme\Corporate;
 use App\Models\Theme\DiscountCoupon;
+use App\Models\Theme\District;
+use App\Models\Theme\Quarter;
+use App\Models\Theme\Neighborhood;
 use App\Models\Theme\ProductCategory;
 use App\Models\Theme\Settings;
 use App\Models\Theme\User;
+use App\Models\Theme\UserAddress;
+use Faker\Provider\UserAgent;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\App;
@@ -36,14 +41,13 @@ class indexController extends Controller
         Session::put("lang", $this->lang);
         $this->langJson = json_decode(file_get_contents(public_path("language/" . $this->lang . ".json"), "r"));
         $this->settings = Settings::where("isActive", 1)->get();
-        foreach ($this->settings as $setting):
+        foreach ($this->settings as $setting) :
             $language = $setting->language;
             $this->langJson->$language = json_decode(file_get_contents(public_path("language/" . $language . ".json"), "r"));
         endforeach;
         $this->setting = Settings::where("isActive", 1)->where("language", $this->lang)->first();
         $this->page = "account";
         $this->cart = \Cart::getContent();
-
     }
 
     public function index(Request $request)
@@ -62,8 +66,7 @@ class indexController extends Controller
             return $query->where("user_id", Session::get("user")->id)
                 ->orwhere("user_id", 0);
         })->where("isActive", 1)->get();
-        return view("theme.account.index")->with
-        ([
+        return view("theme.account.index")->with([
             "viewData" => $this->viewData,
             "lang" => $this->lang,
             "langJson" => $this->langJson,
@@ -106,6 +109,123 @@ class indexController extends Controller
                 return redirect()->back();
             }
         }
+    }
+    public function changeCity(Request $request)
+    {
+        if (!empty($request->city_id)) {
+            $data = District::where("il_id", $request->city_id)->get();
+            return response()->json($data);
+        }
+    }
+    public function changeDistrict(Request $request)
+    {
+        if (!empty($request->district_id)) {
+            $data = Neighborhood::where("ilce_id", $request->district_id)->get();
+            return response()->json($data);
+        }
+    }
+    public function changeNeighborhood(Request $request)
+    {
+        if (!empty($request->neighborhood_id)) {
+            $data = Quarter::where("semt_id", $request->neighborhood_id)->get();
+            return response()->json($data);
+        }
+    }
+    public function addAddress(Request $request)
+    {
+        $data = $request->except("_token");
+        $data["user_id"] = Session::get("user")->id;
+        $add = UserAddress::insert($data);
+        if ($add) {
+            return response()->json(["success" => true, "title" => $this->langJson->alert->success, "msg" => $this->langJson->alert->add_address]);
+        } else {
+            return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_error]);
+        }
+    }
+    public function editAddress(Request $request)
+    {
 
+        if ($request->process == "update") {
+            if (!empty($request->id)) {
+                $data = UserAddress::where("id", $request->id)->first();
+                if (!empty($data)) {
+                    $updateData =  $request->except("_token");
+                    unset($updateData["id"]);
+                    unset($updateData["process"]);
+                    $update = UserAddress::where("id", $request->id)->update($updateData);
+                    if ($update) {
+                        return response()->json(["success" => true, "title" => $this->langJson->alert->success, "msg" => $this->langJson->alert->address_updated]);
+                    } else {
+                        return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_update_nothing]);
+                    }
+                } else {
+                    return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_nothing]);
+                }
+            }
+        } else {
+            if (!empty($request->id)) {
+                $data = UserAddress::where("id", $request->id)->first();
+                if (!empty($data)) {
+                    $cities = City::all();
+                    $districts = District::where("il_id", $data->city_id)->get();
+                    $neighborhoods = Neighborhood::where("ilce_id", $data->district_id)->get();
+                    $quarters = Quarter::where("semt_id", $data->neighborhood_id)->get();
+                    return response()->json(
+                        [
+                            "success" => true,
+                            "render" => view("theme.account.address-edit")->with([
+                                "cities" => $cities,
+                                "districts" => $districts,
+                                "neighborhoods" => $neighborhoods,
+                                "quarters" => $quarters,
+                                "data" => $data,
+                                "langJson" => $this->langJson
+                            ])->render(),
+                            "title" => $data->title,
+                            "message" => $this->langJson->account->edit_address
+                        ]
+                    );
+                } else {
+                    return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_nothing]);
+                }
+            }
+        }
+    }
+
+    public function deleteAddress(Request $request)
+    {
+        if (!empty($request->id)) {
+            $data = UserAddress::where("id", $request->id)->first();
+            if (!empty($data)) {
+                $delete = UserAddress::where("id", $request->id)->delete();
+                if ($delete) {
+                    return response()->json(
+                        [
+                            "success" => true,
+                            "title" => $this->langJson->alert->success,
+                            "msg" => $this->langJson->account->delete_address
+                        ]
+                    );
+                } else {
+                    return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_nothing]);
+                }
+            } else {
+                return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_nothing]);
+            }
+        } else {
+            return response()->json(["success" => false, "title" => $this->langJson->alert->error, "msg" => $this->langJson->alert->address_nothing]);
+        }
+    }
+
+    public function renderAddress()
+    {
+        $user = User::with("Address")->where("id", Session::get("user")->id)->first();
+        $this->viewData->address = $user->address;
+        return response()->json([
+            "data" => view("theme.account.address")->with([
+                "viewData" => $this->viewData,
+                "langJson" => $this->langJson,
+            ])->render()
+        ]);
     }
 }

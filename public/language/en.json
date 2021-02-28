@@ -7,7 +7,8 @@
         "name": {
             "top": "Adınız",
             "value": "Adın"
-        }
+        },
+        "search_placeholder": "Enter The Product Name"
     },
     "footer": {
         "author": "Mutfak Yapım Digital Advertising  Agency",
@@ -41,8 +42,14 @@
         "register": "register",
         "account": "account",
         "logout": "logout",
-        "basket_update": "basket-update"
-
+        "basket_update": "basket-update",
+        "change_city": "change-city",
+        "change_district": "change-district",
+        "change_neighborhood": "change-neighborhood",
+        "add_address": "add-address",
+        "edit_address": "edit-address",
+        "delete_address": "delete-address",
+        "render_address": "get-address"
     },
     "login": {
         "login": "Login",
@@ -53,7 +60,7 @@
         "full_name": "Your Name And Surname",
         "phone": "Your Phone",
         "user_name": "User Name",
-        "forgot_password":"Forgot Your Password?"
+        "forgot_password": "Forgot Your Password?"
     },
     "select_order": {
         "new": "The Newests",
@@ -83,15 +90,16 @@
         "account": "My Account",
         "logout": "Logout",
         "submit": "Submit"
-
     },
     "account": {
-        "pass_null":"If you do not want to change the penalty, please leave this field blank!"
+        "pass_null": "If you do not want to change the penalty, please leave this field blank!",
+        "add_address": "Add Address",
+        "edit_address": "Edit Address",
+        "delete_address": "Delete Address"
     },
     "category": {
         "showing": "Showing Pieces.",
         "sub_category": "Sub Categories"
-
     },
     "contact": {
         "contact_us": "CONTACT US",
@@ -110,8 +118,6 @@
         "discount_coupon": "Discount Coupon",
         "discount_apply": "Apply Coupon",
         "cart_summary": "Cart Summary"
-
-
     },
     "alert": {
         "pageNotFound": "The Page You Wanted To Access Could Not Be Found.",
@@ -126,7 +132,7 @@
         "user_empty": "There Is No User Of This Information.",
         "error_pass": "Your Password is Incorrect",
         "welcome": "Welcome To Our Online Store. You Are Being Redirected.",
-        "logout":"Successfully Logged Out of Your Account" ,
+        "logout": "Successfully Logged Out of Your Account",
         "unlogout": "An Error Occurred While Logging Out of Your Account",
         "not_mach": "Does Not Match.",
         "account_update_success": "Request Your Information Successfully",
@@ -139,13 +145,16 @@
         "deleteFavourite": "Product Deleted From Your Favorites.",
         "notDeleteFavourite": "The product could not be deleted from your favorites.",
         "basket_null": "There Is No Product In Your Cart.",
-        "basket_update": "Your Cart Has Been Updated."
-
-
-
-    },
-    "header": {
-        "search_placeholder": "Enter The Product Name"
+        "basket_update": "Your Cart Has Been Updated.",
+        "add_address": "Your Address Added Successfully.",
+        "address_error": "An Error Occurred While Adding Address, Please Try Again Later.",
+        "address_nothing": "No Such Address Was Found.",
+        "address_updated": "Your address has been successfully updated.",
+        "address_update_nothing": "Error Occurred While Updating Address.",
+        "cancel": "Cancel",
+        "confirm": "Yes, Delete It",
+        "remove_item": "Are You Sure You Want To Delete?",
+        "remove_item_desc": "If You Delete This Record, The Record Cannot Be Recovered."
     },
     "menu": {
         "home": "HOME",
