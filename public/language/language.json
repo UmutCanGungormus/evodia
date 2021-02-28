@@ -1,0 +1,129 @@
+{
+    "header": {
+        "title": {
+            "top": "Başlık",
+            "value": "UCG"
+        },
+        "name": {
+            "top": "Adınız",
+            "value": "Adın"
+        }
+    },
+    "footer": {
+        "author": "Mutfak Yapım Dijital Reklam Ajansı",
+        "cargo": "100₺ Üzeri Ücretsiz Kargo",
+        "support": "7/24 DESTEK",
+        "free_shipping": "ÜCRETSİZ KARGO",
+        "free_text": "Haftanın 7 günü 24 saat kesintisiz destek",
+        "payment_return": "KOLAY PARA İADESİ",
+        "return_day": "7 Gün İçerisinde İade",
+        "social_media": "Sosyal Medya Hesaplarımız"
+    },
+    "select_order": {
+        "new": "En Yeniler",
+        "old": "En Eskiler",
+        "cheap": "Fiyata Göre Artan",
+        "expensive": "Fiyata Göre Azalan"
+    },
+    "products": {
+        "options": "Seçenekler",
+        "description": "Açıklama",
+        "features": "Özellik",
+        "count": "Adet",
+        "add_basket": "Sepete Ekle",
+        "select": "Seçiniz"
+
+    },
+    "routes": {
+        "news": "haber",
+        "news_detail": "haber-detay",
+        "home": "anasayfa",
+        "corporate": "kurumsal",
+        "contact": "iletisim",
+        "basket": "sepet",
+        "basket_add": "sepete-ekle",
+        "basket_delete": "sepet-sil",
+        "render_category": "kategori-sirala",
+        "product": "urun",
+        "product_detail": "urun-detay",
+        "category": "kategori",
+        "category_detail": "kategori-detay",
+        "search": "ara",
+        "render_search": "arama-sirala",
+        "login": "giris",
+        "register": "kayit",
+        "account": "hesabim",
+        "logout": "cikis"
+    },
+    "login": {
+        "login": "Giriş Yap",
+        "register": "Kayıt Ol",
+        "email": "E-Posta",
+        "password": "Şifre",
+        "confirm_password": "Şifre Tekrarı",
+        "full_name": "Adınız Soyadınız",
+        "phone": "Teleofon",
+        "user_name": "Kullanıcı Adı",
+        "forgot_password":"Şifrenizi Unuttunuz Mu?"
+    },
+    "home": {
+        "examine": "İNCELE",
+        "discount": "İNDİRİM",
+        "price": "₺",
+        "basket_go": "Sepete Git",
+        "favourite": "Favorilere Ekle",
+        "trendProduct": "TREND ÜRÜNLERİMİZ",
+        "isComing": "EVODİA'DA YAKINDA GELECEKLER",
+        "sub_total": "Ara Toplam",
+        "total": "Toplam",
+        "account": "Hesabım",
+        "logout": "Çıkış Yap",
+        "submit": "Gönder"
+    },
+    "account": {
+        "pass_null":"Şifrenizi Değiştirmek İstemiyorsanız Bu Alanı Boş Bırakınız!"
+    },
+    "category": {
+        "showing": "Adet Ürün Gösteriliyor.",
+        "sub_category": "Alt Kategoriler"
+    },
+    "header": {
+        "search_placeholder": "Ürün Adı Girin"
+    },
+    "alert": {
+        "pageNotFound": "Erişmek İstediğiniz Sayfa Bulunamadı.",
+        "error": "Hata!",
+        "success": "Başarılı!",
+        "no_status": "Bu Sayfaya Giriş Yetkiniz Yoktur.",
+        "no_product": "Bu Kategoriye Ait Ürün Bulunamadı",
+        "null": " Alanı Gereklidir Lütfen Boş Bırakmayınız",
+        "basket_add": "Ürün Sepete Eklendi",
+        "basket_delete": "Ürün Sepetten Silindi",
+        "validator": "Lütfen Girdiğiniz Bilgileri Kontrol Ediniz",
+        "user_empty": "Bu Bilgilere Ait Bir Kullanıcı Bulunmamaktadır.",
+        "error_pass": "Şifreniz Hatalı",
+        "welcome": "İnternet Mağazamıza Hoşgeldiniz.Yönlendiriliyorsunuz.",
+        "logout":"Hesabınızdan Başarıyla Çıkış Yaptınız" ,
+        "unlogout": "Hesabınızdan Çıkış Yaparken Bir Hata Oluştu",
+        "not_mach": "Eşleşmiyor.",
+        "account_update_success": "Bilgileriniz Başarıyla Güncellendi",
+        "account_update_error": "Bilgileriniz Güncellenemedi"
+    },
+    "contact": {
+        "contact_us": "BİZİMLE İLETİŞİME GEÇİN",
+        "address": "ADRES",
+        "phone": "TELEFON",
+        "mail": "E-POSTA",
+        "contact_form": "İLETİŞİM FORMU"
+    },
+    "menu": {
+        "home": "ANASAYFA",
+        "products": "ÜRÜNLER",
+        "category": "KATEGORİ",
+        "contact": "İLETİŞİM",
+        "corporate": "KURUMSAL",
+        "basket": "SEPET",
+        "account": "HESABIM",
+        "language": "DİLLER"
+    }
+}

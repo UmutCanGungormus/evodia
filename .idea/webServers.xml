@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3a0a5a3c-23fe-407e-87a0-fffde7ef8494" name="sena_gsm" url="http://senagsm.com.tr">
+        <fileTransfer host="senagsm.com.tr" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="74398f71-0c4f-4def-a612-5cb765c0848d" name="masgsm" url="http://89.252.161.83">
+        <fileTransfer host="89.252.161.83" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

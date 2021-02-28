@@ -1,0 +1,143 @@
+{
+    "header": {
+        "title": {
+            "top": "Başlık",
+            "value": "UCG"
+        },
+        "name": {
+            "top": "Adınız",
+            "value": "Adın"
+        }
+    },
+    "footer": {
+        "author": "Mutfak Yapım Digital Advertising  Agency",
+        "cargo": "Free Shipping Over 100₺",
+        "support": "24/7 SUPPORT",
+        "free_shipping": "FREE SHIPPING",
+        "free_text": "Uninterrupted support 24 hours a day, 7 days a week",
+        "payment_return": "EASY PAYMENT RETURN",
+        "return_day": "Returns in 7 Days",
+        "social_media": "Our Social Media Accounts"
+    },
+    "routes": {
+        "news": "news",
+        "news_detail": "news-detail",
+        "home": "home",
+        "contact": "contact",
+        "corporate": "corporate",
+        "add_favourite": "favourite-add",
+        "delete_favourite": "favourite-delete",
+        "basket": "basket",
+        "basket_add": "basket-add",
+        "basket_delete": "basket-delete",
+        "render_category": "render-category",
+        "product": "product",
+        "product_detail": "product-detail",
+        "category": "category",
+        "category_detail": "category-detail",
+        "search": "search",
+        "render_search": "render-search",
+        "login": "login",
+        "register": "register",
+        "account": "account",
+        "logout": "logout"
+    },
+    "login": {
+        "login": "Login",
+        "register": "Register",
+        "email": "E-Mail",
+        "password": "Password",
+        "confirm_password": "Re Password",
+        "full_name": "Your Name And Surname",
+        "phone": "Your Phone",
+        "user_name": "User Name",
+        "forgot_password":"Forgot Your Password?"
+    },
+    "select_order": {
+        "new": "The Newests",
+        "old": "Oldest",
+        "cheap": "Increasing by Price",
+        "expensive": "Descending by Price"
+    },
+    "products": {
+        "options": "Options",
+        "description": "Description",
+        "features": "Features",
+        "count": "Count",
+        "add_basket": "Add to Basket",
+        "select": "Choose"
+    },
+    "home": {
+        "examine": "EXAMINE",
+        "discount": "DISCOUNT",
+        "price": "£",
+        "favourite": "Add to Favourites",
+        "favouriteDelete": "Remove to Favourites",
+        "basket_go": "Go To Basket",
+        "trendProduct": "TREND PRODUCTS",
+        "isComing": "COMING SOON IN EVODIA",
+        "sub_total": "Sub Total",
+        "total": "Total",
+        "account": "My Account",
+        "logout": "Logout",
+        "submit": "Submit"
+
+    },
+    "account": {
+        "pass_null":"If you do not want to change the penalty, please leave this field blank!"
+    },
+    "category": {
+        "showing": "Showing Pieces.",
+        "sub_category": "Sub Categories"
+
+    },
+    "contact": {
+        "contact_us": "CONTACT US",
+        "address": "ADDRESS",
+        "phone": "PHONE",
+        "mail": "E-MAIL",
+        "contact_form": "CONTACT FORM"
+    },
+    "alert": {
+        "pageNotFound": "The Page You Wanted To Access Could Not Be Found.",
+        "error": "ERROR!",
+        "success": "SUCCESS!",
+        "no_status": "You are not authorized to login to this page.",
+        "no_product": "No Products Were Found in This Category.",
+        "null": " Please Do Not Leave Required Field Blank",
+        "basket_add": "Product Added To Cart",
+        "basket_delete": "Product Deleted From Basket",
+        "validator": "Please Check Your Entered Information",
+        "user_empty": "There Is No User Of This Information.",
+        "error_pass": "Your Password is Incorrect",
+        "welcome": "Welcome To Our Online Store. You Are Being Redirected.",
+        "logout":"Successfully Logged Out of Your Account" ,
+        "unlogout": "An Error Occurred While Logging Out of Your Account",
+        "not_mach": "Does Not Match.",
+        "account_update_success": "Request Your Information Successfully",
+        "account_update_error": "Your Information Could Not Be Updated",
+        "user_null": "You must be logged in to do this operation.",
+        "allready_exist": "This Product Is Already Available In Our Favorite Products.",
+        "notExist": "This Item Is Not In Your Choice.",
+        "nothingFavourite": "The product could not be added to favorites.",
+        "addFavourite": "Product has been added to your favorites.",
+        "deleteFavourite": "Product Deleted From Your Favorites.",
+        "notDeleteFavourite": "The product could not be deleted from your favorites."
+
+
+
+    },
+    "header": {
+        "search_placeholder": "Enter The Product Name"
+    },
+    "menu": {
+        "home": "HOME",
+        "products": "PRODUCTS",
+        "category": "CATEGORY",
+        "contact": "CONTACT",
+        "corporate": "CORPORATE",
+        "basket": "BASKET",
+        "account": "ACCOUNT",
+        "language": "LANGUAGES"
+    }
+}
