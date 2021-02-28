@@ -40,7 +40,9 @@
         "login": "login",
         "register": "register",
         "account": "account",
-        "logout": "logout"
+        "logout": "logout",
+        "basket_update": "basket-update"
+
     },
     "login": {
         "login": "Login",
@@ -98,6 +100,19 @@
         "mail": "E-MAIL",
         "contact_form": "CONTACT FORM"
     },
+    "basket": {
+        "product_image": "Product Image",
+        "product_name": "Product Name",
+        "price": "Product Price",
+        "qty": "Quantity",
+        "total": "Total",
+        "delete": "Remove",
+        "discount_coupon": "Discount Coupon",
+        "discount_apply": "Apply Coupon",
+        "cart_summary": "Cart Summary"
+
+
+    },
     "alert": {
         "pageNotFound": "The Page You Wanted To Access Could Not Be Found.",
         "error": "ERROR!",
@@ -122,7 +137,9 @@
         "nothingFavourite": "The product could not be added to favorites.",
         "addFavourite": "Product has been added to your favorites.",
         "deleteFavourite": "Product Deleted From Your Favorites.",
-        "notDeleteFavourite": "The product could not be deleted from your favorites."
+        "notDeleteFavourite": "The product could not be deleted from your favorites.",
+        "basket_null": "There Is No Product In Your Cart.",
+        "basket_update": "Your Cart Has Been Updated."
 
 
 

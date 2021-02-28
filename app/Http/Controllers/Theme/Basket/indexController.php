@@ -115,4 +115,27 @@ class indexController extends Controller
                 ])->render()
             ]);
     }
+    public function basketUpdate(Request $request){
+        if(!empty($request->qty) && !empty($request->id)){
+            \Cart::update($request->id,[
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->qty
+                ),
+            ]);
+        }
+        $items = \Cart::getContent();
+        return response()->json(
+            [
+                "alert" => $this->langJson->alert->basket_update,
+                "data" => view("theme.basket.render-basket")->with([
+                    "langJson" => $this->langJson
+                ])->render(),
+                "mini_cart_data"=>view("theme.basket.render")->with([
+                    "cart" => $items,
+                    "langJson" => $this->langJson,
+                    "lang" => $this->lang
+                ])->render()
+            ]);
+    }
 }

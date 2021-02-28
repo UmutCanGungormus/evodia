@@ -471,8 +471,7 @@ $('#sticky-sidebar').theiaStickySidebar({
 /*-----
 	Quantity
 --------------------------------*/
-$('.pro-qty').prepend('<button class="dec qtybtn">-</button>');
-$('.pro-qty').append('<button class="inc qtybtn">+</button>');
+
 $('.qtybtn').on('click', function() {
 	var $button = $(this);
 	var oldValue = $button.parent().find('input').val();

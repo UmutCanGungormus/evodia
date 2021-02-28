@@ -43,6 +43,7 @@ foreach ($languages as $lang):
             Route::post("/{$json->routes->render_search}", [\App\Http\Controllers\Theme\Search\indexController::class, "order"])->name($json->routes->render_search);
             Route::post("/{$json->routes->basket_add}", [\App\Http\Controllers\Theme\Basket\indexController::class, "basketAdd"])->name($json->routes->basket_add);
             Route::post("/{$json->routes->basket_delete}", [\App\Http\Controllers\Theme\Basket\indexController::class, "basketDelete"])->name($json->routes->basket_delete);
+            Route::post("/{$json->routes->basket_update}", [\App\Http\Controllers\Theme\Basket\indexController::class, "basketUpdate"])->name($json->routes->basket_update);
             Route::middleware("guest-status")->group(function () use ($json) {
                 Route::get("/{$json->routes->login}", [\App\Http\Controllers\Theme\Login\indexController::class, "index"])->name($json->routes->login);
                 Route::get("/{$json->routes->register}", [\App\Http\Controllers\Theme\Register\indexController::class, "index"])->name($json->routes->register);

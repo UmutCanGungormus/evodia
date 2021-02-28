@@ -55,7 +55,8 @@
         "login": "giris",
         "register": "kayit",
         "account": "hesabim",
-        "logout": "cikis"
+        "logout": "cikis",
+        "basket_update": "sepet-guncelle"
     },
     "login": {
         "login": "Giriş Yap",
@@ -93,6 +94,17 @@
     "header": {
         "search_placeholder": "Ürün Adı Girin"
     },
+    "basket": {
+        "product_image": "Ürün Resmi",
+        "product_name": "Ürün Adı",
+        "price": "Ürün Fiyatı",
+        "qty": "Adet",
+        "total": "Toplam",
+        "delete": "Sil",
+        "discount_coupon": "İndirim Kuponu",
+        "discount_apply": "Kuponu Uygula",
+        "cart_summary": "Sepet Özeti"
+    },
     "alert": {
         "pageNotFound": "Erişmek İstediğiniz Sayfa Bulunamadı.",
         "error": "Hata!",
@@ -117,7 +129,9 @@
         "nothingFavourite": "Ürün Favorilere Eklenemedi.",
         "addFavourite": "Ürün Favorilerinize Eklendi.",
         "deleteFavourite": "Ürün Favorilerinizden Silindi.",
-        "notDeleteFavourite": "Ürün Favorilerinizden Silinemedi."
+        "notDeleteFavourite": "Ürün Favorilerinizden Silinemedi.",
+        "basket_null": "Sepetinizde Ürün Bulunmamaktadır.",
+        "basket_update": "Sepetiniz Güncellendi."
     },
     "contact": {
         "contact_us": "BİZİMLE İLETİŞİME GEÇİN",
