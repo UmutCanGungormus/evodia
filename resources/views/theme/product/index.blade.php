@@ -100,11 +100,11 @@
                                     <div class="product-action">
                                         <ul>
                                             <li>
-                                                <a data-id="{{$viewData->item->id}}" class="deleteToFavourite {{!empty($viewData->item->favourite_control)?"":"d-none"}}" data-url="{{route("theme.{$langJson->routes->delete_favourite}")}}" href="javascript:void(0)" title="{{$langJson->home->favouriteDelete}}"><i class="fa fa-heart  mt-2"></i></a>
+                                                <a data-id="{{$viewData->item->id}}" class="deleteToFavourite {{empty($viewData->item->favourite_control)?"":"d-none"}}" data-url="{{route("theme.{$langJson->routes->delete_favourite}")}}" href="javascript:void(0)" title="{{$langJson->home->favouriteDelete}}"><i class="fa fa-heart  mt-2"></i></a>
                                             </li>
 
                                             <li>
-                                                <a data-id="{{$viewData->item->id}}" class="addToFavourite {{empty($viewData->item->favourite_control)?"":"d-none"}}" data-url="{{route("theme.{$langJson->routes->add_favourite}")}}" href="javascript:void(0)" title="{{$langJson->home->favourite}}"><i class="far fa-heart  mt-2"></i></a>
+                                                <a data-id="{{$viewData->item->id}}" class="addToFavourite {{!empty($viewData->item->favourite_control)?"":"d-none"}}" data-url="{{route("theme.{$langJson->routes->add_favourite}")}}" href="javascript:void(0)" title="{{$langJson->home->favourite}}"><i class="far fa-heart  mt-2"></i></a>
                                             </li>
                                         </ul>
                                     </div>

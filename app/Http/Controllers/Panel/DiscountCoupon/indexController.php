@@ -183,7 +183,7 @@ class indexController extends Controller
                 })->addColumn('isActive', function ($row) {
                     $btn = '
                     <div class="custom-control custom-switch">
-                      <input ' . ($row->isActive == 1 ? " checked " : "") . ' data-id="' . $row->id . '" data-url="' . route("panel.product.isactive") . '" type="checkbox" class="custom-control-input isActive" id="customSwitch' . $row->id . '">
+                      <input ' . ($row->isActive == 1 ? " checked " : "") . ' data-id="' . $row->id . '" data-url="' . route("panel.discountCoupon.isactive") . '" type="checkbox" class="custom-control-input isActive" id="customSwitch' . $row->id . '">
                       <label class="custom-control-label" for="customSwitch' . $row->id . '"></label>
                     </div>
                     ';
@@ -228,7 +228,7 @@ class indexController extends Controller
         $data = $request->except("_token");
         if (!empty($data)):
 
-            $data = Product::where($data)->first();
+            $data = DiscountCoupon::where($data)->first();
             if ($data) {
                 $isActive = ($data->isActive == 1 ? 0 : 1);
                 $update = DiscountCoupon::where("id", $data->id)->update(["isActive" => $isActive]);

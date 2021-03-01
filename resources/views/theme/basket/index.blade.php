@@ -84,10 +84,10 @@
                                     <form action="#">
                                         <div class="row">
                                             <div class="col-md-6 col-12 mb-25">
-                                                <input type="text" placeholder="{{$langJson->basket->discount_coupon}}">
+                                                <input type="text" id="discount-coupon" placeholder="{{$langJson->basket->discount_coupon}}">
                                             </div>
                                             <div class="col-md-6 col-12 mb-25">
-                                                <button class="btn">{{$langJson->basket->discount_apply}}</button>
+                                                <a href="javascript:void(0)" class="btn apply-coupon">{{$langJson->basket->discount_apply}}</a>
                                             </div>
                                         </div>
                                     </form>
@@ -100,13 +100,22 @@
                                     <div id="cart-summary-render">
                                         <div class="cart-summary-wrap">
                                             <h4>{{$langJson->basket->cart_summary}}</h4>
+
                                             <p>{{$langJson->home->sub_total}}
                                                 <span>{{\Cart::getSubTotal()}} {{$langJson->home->price}}</span></p>
+
+                                            @foreach(\Cart::getConditions() as $condition)
+                                                <p>{{$langJson->account->discount_coupon}}
+                                                    <span>{{ $condition->getName()}} {{$condition->getValue()}}</span>
+                                                    <a href="javascript:void(0)" data-id="{{$condition->getName()}}" class="delete-discount"><i class="fas fa-times"></i></a>
+
+                                                </p>
+                                            @endforeach
                                             <h2>{{$langJson->home->total}}
                                                 <span>{{\Cart::getTotal()}} {{$langJson->home->price}}</span></h2>
                                         </div>
                                         <div class="cart-summary-button">
-                                            <button class="btn">Checkout</button>
+                                            <a href="" class="btn">{{$langJson->basket->checkout}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +168,6 @@
             })
 
             $(document).on("change click", ".pro-quantity-input,.inc,.dec", function () {
-                console.lo
                 let id = $(this).data("id");
                 let input = $(".pro-quantity-input[data-id=" + id + "]");
                 let qty = input.val();
@@ -179,6 +187,84 @@
                         position: "topCenter",
                         displayMode: "once"
                     });
+                })
+
+            })
+            $(document).on("click", ".apply-coupon", function () {
+                let coupon = $("#discount-coupon").val()
+                @if(\Illuminate\Support\Facades\Session::has("user"))
+                if (isEmpty(coupon)) {
+                    iziToast.error({
+                        title: "{{$langJson->alert->error}}",
+                        message: "{{$langJson->alert->null_coupon}}",
+                        position: "topCenter",
+                        display: "once"
+                    })
+                } else {
+                    $.ajax({
+                        url: "{{route("theme.{$langJson->routes->apply_coupon}")}}",
+                        type: "POST",
+                        data: {"coupon": coupon},
+                        dataType: "json"
+                    }).done(function (response) {
+                        if (response.success) {
+                            iziToast.success({
+                                title: response.title,
+                                message: response.msg,
+                                position: "topCenter",
+                                display: "once"
+                            })
+                            $(".pro-quantity-input").trigger("click")
+
+                        } else {
+                            iziToast.error({
+                                title: response.title,
+                                message: response.msg,
+                                position: "topCenter",
+                                display: "once"
+                            })
+                        }
+                    })
+                }
+                @else
+
+                iziToast.error({
+                    title: "{{$langJson->alert->error}}",
+                    message: "{{$langJson->alert->user_null}}",
+                    position: "topCenter",
+                    display: "once"
+                })
+
+                @endif
+
+
+
+            })
+            $(document).on("click",".delete-discount",function (){
+                let id=$(this).data("id")
+                $.ajax({
+                    url: "{{route("theme.{$langJson->routes->remove_coupon}")}}",
+                    type: "POST",
+                    data: {"name": id},
+                    dataType: "json"
+                }).done(function (response) {
+                    if (response.success) {
+                        iziToast.success({
+                            title: response.title,
+                            message: response.msg,
+                            position: "topCenter",
+                            display: "once"
+                        })
+                        $(".pro-quantity-input").trigger("click")
+
+                    } else {
+                        iziToast.error({
+                            title: response.title,
+                            message: response.msg,
+                            position: "topCenter",
+                            display: "once"
+                        })
+                    }
                 })
 
             })

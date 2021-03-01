@@ -50,10 +50,13 @@ class indexController extends Controller
             foreach ($request->file() as $key => $file):
                 $strFileName = json_decode($data->seo_url, true)[$lang];
                 $extension = $file->extension();
-                $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
+                $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                $fileNameWithExtension = $newFile . "." . $extension;
                 $path = $file->storeAs("uploads/product/{$strFileName}", $fileNameWithExtension, "public");
-                $insertData["img_url"] = $path;
-                if (!$path) {
+                $newPath= Helpers::webpConverter($extension,$path,"uploads/product/".$strFileName,$newFile);
+                Storage::disk("public")->delete($path);
+                $insertData["img_url"] = $newPath;
+                if (!$newPath) {
                     $status = 0;
                 }
             endforeach;

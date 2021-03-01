@@ -204,10 +204,10 @@ class Helpers
         imagepalettetotruecolor($img);
         imagealphablending($img, true);
         imagesavealpha($img, true);
-        $convert = imagewebp($img, storage_path("app/public/uploads/slider/{$strFileName}/{$name}" . ".webp"), $quality);
+        $convert = imagewebp($img, storage_path("app/public/{$strFileName}/{$name}" . ".webp"), $quality);
         imagedestroy($img);
         if ($convert) {
-            return "uploads/slider/".$strFileName . "/" . $name . ".webp";
+            return $strFileName . "/" . $name . ".webp";
         } else {
             return $path;
 

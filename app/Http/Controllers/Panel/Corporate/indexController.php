@@ -64,10 +64,13 @@ class indexController extends Controller
                         foreach ($file as $k => $v) {
                             $strFileName = json_decode($seo_url, true)[$k];
                             $extension = $v->extension();
-                            $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
+                            $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                            $fileNameWithExtension = $newFile . "." . $extension;
                             $path = $v->storeAs("uploads/corporate/{$strFileName}", $fileNameWithExtension, "public");
-                            $data["img_url"][$k] = $path;
-                            if (!$path) {
+                            $newPath= Helpers::webpConverter($extension,$path,"uploads/corporate/".$strFileName,$newFile);
+                            Storage::disk("public")->delete($path);
+                            $data["img_url"][$k] = $newPath;
+                            if (!$newPath) {
                                 $status = 0;
                             }
                         }
@@ -139,14 +142,17 @@ class indexController extends Controller
                                     Storage::disk("public")->delete($item->img_url->$k);
                                 }
                                 $extension = $v->extension();
-                                $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
+                                $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                                $fileNameWithExtension = $newFile . "." . $extension;
                                 $path = $v->storeAs("uploads/corporate/{$strFileName}", $fileNameWithExtension, "public");
+                                $newPath= Helpers::webpConverter($extension,$path,"uploads/corporate/".$strFileName,$newFile);
+                                Storage::disk("public")->delete($path);
                                 if (!empty($data["img_url"]->$k)) {
-                                    $data["img_url"]->$k = $path;
+                                    $data["img_url"]->$k = $newPath;
                                 } else {
-                                    $data["img_url"]->$k = $path;
+                                    $data["img_url"]->$k = $newPath;
                                 }
-                                if (!$path) {
+                                if (!$newPath) {
                                     $status = 0;
                                 }
                             }

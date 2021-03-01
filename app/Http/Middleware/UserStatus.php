@@ -25,7 +25,7 @@ class UserStatus
         $json = Helpers::jsonGet($languages->id);
         if (Session::has("admin")) {
             $request->session()->flash("alert",['status'=>'error',"msg"=> $json->alert->no_status,"title"=>$json->alert->error]);
-            return redirect()->back();
+            return redirect()->route("panel.home");
         } else {
             return $next($request);
         }

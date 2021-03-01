@@ -23,8 +23,7 @@
     </div>
     <!-- Page Banner Section End -->
 
-    <div
-        class="my-account-section section pt-90 pt-lg-70 pt-md-60 pt-sm-50 pt-xs-45  pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
+    <div class="my-account-section section pt-90 pt-lg-70 pt-md-60 pt-sm-50 pt-xs-45  pb-100 pb-lg-80 pb-md-70 pb-sm-60 pb-xs-50">
         <div class="container">
             <div class="row">
 
@@ -46,8 +45,7 @@
                                 <a href="#favourites" data-toggle="tab"><i class="fa fa-heart"></i> Favorilerim</a>
 
 
-                                <a href="{{ route("theme.{$langJson->routes->logout}") }}"><i
-                                        class="fas fa-sign-out-alt"></i> {{ $langJson->home->logout }}
+                                <a href="{{ route("theme.{$langJson->routes->logout}") }}"><i class="fas fa-sign-out-alt"></i> {{ $langJson->home->logout }}
                                 </a>
                             </div>
                         </div>
@@ -65,41 +63,41 @@
                                         <div class="myaccount-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Name</th>
-                                                        <th>Date</th>
-                                                        <th>Status</th>
-                                                        <th>Total</th>
-                                                        <th>Action</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Name</th>
+                                                    <th>Date</th>
+                                                    <th>Status</th>
+                                                    <th>Total</th>
+                                                    <th>Action</th>
+                                                </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Mostarizing Oil</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Pending</td>
-                                                        <td>$45</td>
-                                                        <td><a href="cart.html" class="btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Katopeno Altuni</td>
-                                                        <td>July 22, 2018</td>
-                                                        <td>Approved</td>
-                                                        <td>$100</td>
-                                                        <td><a href="cart.html" class="btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Murikhete Paris</td>
-                                                        <td>June 12, 2017</td>
-                                                        <td>On Hold</td>
-                                                        <td>$99</td>
-                                                        <td><a href="cart.html" class="btn">View</a></td>
-                                                    </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mostarizing Oil</td>
+                                                    <td>Aug 22, 2018</td>
+                                                    <td>Pending</td>
+                                                    <td>$45</td>
+                                                    <td><a href="cart.html" class="btn">View</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Katopeno Altuni</td>
+                                                    <td>July 22, 2018</td>
+                                                    <td>Approved</td>
+                                                    <td>$100</td>
+                                                    <td><a href="cart.html" class="btn">View</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Murikhete Paris</td>
+                                                    <td>June 12, 2017</td>
+                                                    <td>On Hold</td>
+                                                    <td>$99</td>
+                                                    <td><a href="cart.html" class="btn">View</a></td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -128,46 +126,29 @@
                                                                     </div>
                                                                 @endif
 
-                                                                <a
-                                                                    href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}">
-                                                                    <img src="{{ asset("storage/{$product->cover_photo->img_url}") }}"
-                                                                        class="img-fluid"
-                                                                        alt="{{ $product->title->$lang }}"></a>
+                                                                <a href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}">
+                                                                    <img src="{{ asset("storage/{$product->cover_photo->img_url}") }}" class="img-fluid" alt="{{ $product->title->$lang }}"></a>
                                                                 <div class="product-action">
                                                                     <ul>
                                                                         <li>
-                                                                            <a
-                                                                                href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}"><i
-                                                                                    class="fa fa-search  mt-2"></i></a>
+                                                                            <a href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}"><i class="fa fa-search  mt-2"></i></a>
                                                                         </li>
                                                                         <li>
-                                                                            <a data-id="{{ $product->id }}"
-                                                                                class="deleteToFavourite {{ !empty($product->favourite_control) ? '' : 'd-none' }}"
-                                                                                data-url="{{ route("theme.{$langJson->routes->delete_favourite}") }}"
-                                                                                href="javascript:void(0)"
-                                                                                title="{{ $langJson->home->favouriteDelete }}"><i
-                                                                                    class="fa fa-heart  mt-2"></i></a>
+                                                                            <a data-id="{{ $product->id }}" class="deleteToFavourite {{ !empty($product->favourite_control) ? '' : 'd-none' }}" data-url="{{ route("theme.{$langJson->routes->delete_favourite}") }}" href="javascript:void(0)" title="{{ $langJson->home->favouriteDelete }}"><i class="fa fa-heart  mt-2"></i></a>
                                                                         </li>
 
                                                                         <li>
-                                                                            <a data-id="{{ $product->id }}"
-                                                                                class="addToFavourite {{ empty($product->favourite_control) ? '' : 'd-none' }}"
-                                                                                data-url="{{ route("theme.{$langJson->routes->add_favourite}") }}"
-                                                                                href="javascript:void(0)"
-                                                                                title="{{ $langJson->home->favourite }}"><i
-                                                                                    class="far fa-heart  mt-2"></i></a>
+                                                                            <a data-id="{{ $product->id }}" class="addToFavourite {{ empty($product->favourite_control) ? '' : 'd-none' }}" data-url="{{ route("theme.{$langJson->routes->add_favourite}") }}" href="javascript:void(0)" title="{{ $langJson->home->favourite }}"><i class="far fa-heart  mt-2"></i></a>
                                                                         </li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="product-content">
                                                                 <h3 class="title">
-                                                                    <a
-                                                                        href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}">{{ $product->title->$lang }}</a>
+                                                                    <a href="{{ route("theme.{$langJson->routes->product}", $product->seo_url->$lang) }}">{{ $product->title->$lang }}</a>
                                                                 </h3>
                                                                 <p class="product-price">
-                                                                    <span
-                                                                        class="discounted-price">{{ $product->price->$lang }}
+                                                                    <span class="discounted-price">{{ $product->price->$lang }}
                                                                         {{ $langJson->home->price }}</span>
                                                                 </p>
                                                             </div>
@@ -184,35 +165,40 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="download" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Downloads</h3>
+                                        <h3>{{$langJson->account->discount_coupon}}</h3>
 
-                                        <div class="myaccount-table table-responsive text-center">
-                                            <table class="table table-bordered">
-                                                <thead class="thead-light">
+                                      @if(count((array)$viewData->coupons)>0)
+                                            <div class="myaccount-table table-responsive text-center">
+                                                <table class="table table-bordered">
+                                                    <thead class="thead-light">
                                                     <tr>
-                                                        <th>Product</th>
-                                                        <th>Date</th>
-                                                        <th>Expire</th>
-                                                        <th>Download</th>
+                                                        <th>{{$langJson->account->coupon_code}}</th>
+                                                        <th>{{$langJson->account->expiration_date}}</th>
+                                                        <th>{{$langJson->account->rate}}</th>
+                                                        <th>{{$langJson->account->copy}}</th>
                                                     </tr>
-                                                </thead>
+                                                    </thead>
 
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Mostarizing Oil</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Yes</td>
-                                                        <td><a href="#" class="btn">Download File</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Katopeno Altuni</td>
-                                                        <td>Sep 12, 2018</td>
-                                                        <td>Never</td>
-                                                        <td><a href="#" class="btn">Download File</a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    <tbody>
+                                                    @foreach($viewData->coupons as $coupon)
+                                                        <tr>
+                                                            <td>{{$coupon->title->$lang}}</td>
+                                                            <td>{{date("d/m/Y",strtotime($coupon->time))}}</td>
+                                                            <td>%{{$coupon->discount_rate}}</td>
+                                                            <td>
+                                                                <a class="btn copy-btn" data-clipboard-text="{{$coupon->title->$lang}}" href="javascript:void(0)">
+                                                                    <i class="fas fa-copy"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @else
+                                          <div class="alert alert-danger">{{$langJson->alert->not_coupon}}</div>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
@@ -225,8 +211,8 @@
                                                 <h3>{{ $langJson->contact->address }}</h3>
                                             </div>
                                             <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-right">
-                                                <a class="text-dark addAddress" href="javascript:void(0)"><i
-                                                        class="fa fa-edit"></i>{{ $langJson->account->add_address }}</a>
+                                                <a class="text-dark addAddress" href="javascript:void(0)"><i class="fa fa-edit"></i>{{ $langJson->account->add_address }}
+                                                </a>
                                             </div>
 
                                         </div>
@@ -248,14 +234,11 @@
                                                             <p>{{ $address->phone }}</p>
                                                         </address>
                                                     </div>
-                                                    <div
-                                                        class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 align-items-center align-content-center align-middle text-right my-auto py-auto">
-                                                        <a href="javascript:void(0)" data-id="{{ $address->id }}"
-                                                            class="btn d-inline-block edit-address-btn align-items-center align-content-center align-middle my-auto py-auto"><i
-                                                                class="fa fa-edit"></i>{{ $langJson->account->edit_address }}</a>
-                                                        <a href="javascript:void(0)" data-id="{{ $address->id }}"
-                                                            class="btn d-inline-block AddressDelete align-items-center align-content-center align-middle my-auto py-auto"><i
-                                                                class="fa fa-trash"></i>{{ $langJson->account->delete_address }}</a>
+                                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 align-items-center align-content-center align-middle text-right my-auto py-auto">
+                                                        <a href="javascript:void(0)" data-id="{{ $address->id }}" class="btn d-inline-block edit-address-btn align-items-center align-content-center align-middle my-auto py-auto"><i class="fa fa-edit"></i>{{ $langJson->account->edit_address }}
+                                                        </a>
+                                                        <a href="javascript:void(0)" data-id="{{ $address->id }}" class="btn d-inline-block AddressDelete align-items-center align-content-center align-middle my-auto py-auto"><i class="fa fa-trash"></i>{{ $langJson->account->delete_address }}
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -271,24 +254,20 @@
                                         <h3>Hesap Detayları </h3>
 
                                         <div class="account-details-form">
-                                            <form method="POST"
-                                                action="{{ route("theme.{$langJson->routes->account}") }}">
+                                            <form method="POST" action="{{ route("theme.{$langJson->routes->account}") }}">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12 mb-30">
                                                         <label>{{ $langJson->login->full_name }}</label>
-                                                        <input type="text" value="{{ \Session::get('user')->full_name }}"
-                                                            name="full_name">
+                                                        <input type="text" value="{{ \Session::get('user')->full_name }}" name="full_name">
                                                     </div>
                                                     <div class="col-lg-6 col-12 mb-30">
                                                         <label>{{ $langJson->login->email }}</label>
-                                                        <input type="text" value="{{ \Session::get('user')->email }}"
-                                                            name="email">
+                                                        <input type="text" value="{{ \Session::get('user')->email }}" name="email">
                                                     </div>
                                                     <div class="col-lg-6 col-12 mb-30">
                                                         <label>{{ $langJson->login->phone }}</label>
-                                                        <input type="text" value="{{ \Session::get('user')->phone }}"
-                                                            name="phone">
+                                                        <input type="text" value="{{ \Session::get('user')->phone }}" name="phone">
                                                     </div>
 
                                                     <div class="col-12 mb-30">
@@ -297,20 +276,17 @@
 
                                                     <div class="col-lg-6 col-12 mb-30">
                                                         <label>{{ $langJson->login->password }}
-                                                            <small
-                                                                class="text-danger">({{ $langJson->account->pass_null }})</small></label>
+                                                            <small class="text-danger">({{ $langJson->account->pass_null }})</small></label>
                                                         <input type="password" name="password">
                                                     </div>
                                                     <div class="col-lg-6 col-12 mb-30">
                                                         <label>{{ $langJson->login->confirm_password }}
-                                                            <small
-                                                                class="text-danger">({{ $langJson->account->pass_null }})</small></label>
+                                                            <small class="text-danger">({{ $langJson->account->pass_null }})</small></label>
                                                         <input type="password" name="password_confirmation">
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button type="submit"
-                                                            class="w-100 btn btn-success save-change-btn">{{ $langJson->home->submit }}</button>
+                                                        <button type="submit" class="w-100 btn btn-success save-change-btn">{{ $langJson->home->submit }}</button>
                                                     </div>
 
                                                 </div>
@@ -336,8 +312,7 @@
                     <label for="address_title">Adres Başlığı :</label>
                 </div>
                 <div class="col-9">
-                    <input type="text" name="title" id="address_title" placeholder="Adres Başlığı"
-                        class="form-control rounded-0 addAddressTitle">
+                    <input type="text" name="title" id="address_title" placeholder="Adres Başlığı" class="form-control rounded-0 addAddressTitle">
                 </div>
             </div>
 
@@ -354,9 +329,7 @@
                     <label for="addresss_city">İl :</label>
                 </div>
                 <div class="col-9">
-                    <select name="city_id" id="address_city"
-                        onchange="changeCity($(this),'.nsdistrict','.nsneighborhood','.nsquarter')"
-                        class="city nscity w-100 form-control rounded-0 addAddressCity">
+                    <select name="city_id" id="address_city" onchange="changeCity($(this),'.nsdistrict','.nsneighborhood','.nsquarter')" class="city nscity w-100 form-control rounded-0 addAddressCity">
                         <option value="">Lütfen İl Seçiniz.</option>
                         @foreach ($viewData->cities as $city)
                             <option value="{{ $city->id }}">{{ $city->il_adi }}</option>
@@ -369,9 +342,7 @@
                     <label for="address_district">İlçe :</label>
                 </div>
                 <div class="col-9">
-                    <select name="district_id" id="address_district"
-                        onchange="changeDistrict($(this),'.nsneighborhood','.nsquarter')"
-                        class="district nsdistrict w-100 form-control rounded-0 addAddressDistrict">
+                    <select name="district_id" id="address_district" onchange="changeDistrict($(this),'.nsneighborhood','.nsquarter')" class="district nsdistrict w-100 form-control rounded-0 addAddressDistrict">
                         <option value="">Lütfen Önce İl Seçiniz.</option>
                     </select>
                 </div>
@@ -381,9 +352,7 @@
                     <label for="address_neighborhood">Semt :</label>
                 </div>
                 <div class="col-9">
-                    <select name="neighborhood_id" id="address_neighborhood"
-                        onchange="changeNeighborhood($(this),'.nsquarter')"
-                        class="neighborhood nsneighborhood w-100 form-control rounded-0 addAddressNeighborhood">
+                    <select name="neighborhood_id" id="address_neighborhood" onchange="changeNeighborhood($(this),'.nsquarter')" class="neighborhood nsneighborhood w-100 form-control rounded-0 addAddressNeighborhood">
                         <option value="">Lütfen Önce İlçe Seçiniz.</option>
                     </select>
                 </div>
@@ -393,8 +362,7 @@
                     <label for="address_quarter">Mahalle :</label>
                 </div>
                 <div class="col-9">
-                    <select name="quarter_id" id="address_quarter"
-                        class="quarter nsquarter form-control w-100 rounded-0 addAddressQuarter">
+                    <select name="quarter_id" id="address_quarter" class="quarter nsquarter form-control w-100 rounded-0 addAddressQuarter">
                         <option value="">Lütfen Önce Semt Seçiniz.</option>
                     </select>
                 </div>
@@ -404,13 +372,11 @@
                     <label for="address_address">Sokak Bilgisi :</label>
                 </div>
                 <div class="col-9">
-                    <textarea name="address" id="address_address" placeholder="Sokak Bilgisi"
-                        class="form-control rounded-0 addAddressAddress"></textarea>
+                    <textarea name="address" id="address_address" placeholder="Sokak Bilgisi" class="form-control rounded-0 addAddressAddress"></textarea>
                 </div>
             </div>
             <div class="form-group mb-3">
-                <button role="button" class="btn btn-dark AddressAdd float-right rounded-0"
-                    data-url="{{ url('/adres_ekle') }}">Adres Bilgisini Kaydet</button>
+                <button role="button" class="btn btn-dark AddressAdd float-right rounded-0" data-url="{{ url('/adres_ekle') }}">Adres Bilgisini Kaydet</button>
             </div>
         </form>
     </div>
@@ -420,14 +386,25 @@
 @endsection
 @section('footer')
     <script src="{{ asset('theme/assets/js/sweet-alert.min.js') }}"></script>
+    <script src="{{ asset('theme/assets/js/clipboard.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $(document).on("click", ".addAddress", function() {
+        $(document).ready(function () {
+            new ClipboardJS('.copy-btn');
+            $(document).on("click",".copy-btn",function (){
+                iziToast.success({
+                    title: "{{$langJson->alert->success}}",
+                    message: "{{$langJson->alert->copy}}",
+                    position: 'topCenter',
+                    display: 'once'
+                })
+            })
+
+            $(document).on("click", ".addAddress", function () {
                 createModal(".addressModal", "{{ $langJson->account->add_address }}",
                     "{{ $langJson->account->add_address }}")
                 openModal(".addressModal")
             })
-            $(document).on("click", ".AddressAdd", function() {
+            $(document).on("click", ".AddressAdd", function () {
                 let data = $("#addressAdd").serialize();
 
                 $.ajax({
@@ -435,7 +412,7 @@
                     type: "POST",
                     dataType: "json",
                     data: data
-                }).done(function(response) {
+                }).done(function (response) {
                     if (response.success) {
                         iziToast.success({
                             title: response.title,
@@ -455,11 +432,11 @@
                     }
                 })
             })
-            $(document).on("click", ".edit-address-btn", function() {
+            $(document).on("click", ".edit-address-btn", function () {
                 let dataid = $(this).data("id");
                 $.post("{{ route("theme.{$langJson->routes->edit_address}") }}", {
                     id: dataid
-                }, function(response) {
+                }, function (response) {
                     if (response.success) {
 
                         destroyModal(".editAddress");
@@ -477,7 +454,7 @@
                 }, 'JSON');
 
             })
-            $(document).on("click", ".AddressEdit", function() {
+            $(document).on("click", ".AddressEdit", function () {
                 let data = $("#addressEdit").serialize();
 
                 let formData = new FormData($("#addressEdit")[0]);
@@ -493,7 +470,7 @@
                     contentType: false,
                     processData: false,
                     data: formData,
-                }).done(function(response) {
+                }).done(function (response) {
                     if (response.success) {
                         iziToast.success({
                             title: response.title,
@@ -513,7 +490,7 @@
                     }
                 })
             })
-            $(document).on("click", ".AddressDelete", function() {
+            $(document).on("click", ".AddressDelete", function () {
                 let id = $(this).data("id");
                 let data = $(this);
                 Swal.fire({
@@ -534,7 +511,7 @@
                             },
                             dataType: "json",
                             type: "POST"
-                        }).done(function(response) {
+                        }).done(function (response) {
                             if (response.success) {
                                 iziToast.success({
                                     title: response.title,
@@ -560,10 +537,11 @@
         });
 
         function getAddressData() {
-            $.post("{{ route("theme.{$langJson->routes->render_address}") }}", {}, function(response) {
+            $.post("{{ route("theme.{$langJson->routes->render_address}") }}", {}, function (response) {
                 $("#address-render").html(response.data);
             });
         }
+
         // IF CHANGE CITY GET DISTRICTS
         function changeCity($this, district, neighborhood, quarter) {
             let city_id = $this.val();
@@ -578,8 +556,8 @@
                 let options = "<option value='' data-city-id='' selected>Lütfen İlçe Seçiniz.</option>";
                 $.post("{{ route("theme.{$langJson->routes->change_city}") }}", {
                     "city_id": city_id
-                }, function(response) {
-                    response.forEach(function(value, index) {
+                }, function (response) {
+                    response.forEach(function (value, index) {
                         options += "<option value='" + value.id + "' data-city-id='" + value.il_id +
                             "'>" + value.ilce_adi + "</option>";
                     });
@@ -601,8 +579,8 @@
                 let options = "<option value='' data-district-id='' selected>Lütfen Semt Seçiniz.</option>";
                 $.post("{{ route("theme.{$langJson->routes->change_district}") }}", {
                     "district_id": district_id
-                }, function(response) {
-                    response.forEach(function(value, index) {
+                }, function (response) {
+                    response.forEach(function (value, index) {
                         options += "<option value='" + value.id + "' data-district-id='" +
                             value.ilce_id + "'>" + value.semt_adi + "</option>";
                     });
@@ -622,8 +600,8 @@
                 let options = "<option value='' data-neighborhood-id='' selected>Lütfen Mahalle Seçiniz.</option>";
                 $.post("{{ route("theme.{$langJson->routes->change_neighborhood}") }}", {
                     "neighborhood_id": neighborhood_id
-                }, function(response) {
-                    response.forEach(function(value, index) {
+                }, function (response) {
+                    response.forEach(function (value, index) {
                         options += "<option value='" + value.id + "' data-neighborhood-id='" + value
                             .semt_id + "'>" + value.mahalle_adi + "</option>";
                     });
@@ -633,6 +611,7 @@
                 }, 'JSON');
             }
         }
+
 
     </script>
 @endsection

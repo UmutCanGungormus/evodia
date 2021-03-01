@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Theme\Basket;
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
 use App\Models\Theme\Corporate;
+use App\Models\Theme\DiscountCoupon;
 use App\Models\Theme\Option;
 use App\Models\Theme\Product;
 use App\Models\Theme\ProductCategory;
 use App\Models\Theme\Settings;
+use App\Models\Theme\UserCopuon;
+use Darryldecode\Cart\CartCondition;
 use Illuminate\Routing\Route;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
@@ -137,5 +140,42 @@ class indexController extends Controller
                     "lang" => $this->lang
                 ])->render()
             ]);
+    }
+    public function applyCoupon(Request $request){
+        $user=Session::get("user");
+        $coupon=DiscountCoupon::where("title->{$this->lang}",$request->coupon)->where(function ($query)use($user){
+            return $query->where("user_id",$user->id)->orWhere("user_id",0);
+        })->first();
+        if(!empty($user)&&!empty($coupon)){
+            $control=UserCopuon::where("coupon_id",$coupon->id)->where("user_id",$user->id)->first();
+            if(!empty($control)){
+                return response()->json(["success"=>false,"title"=>$this->langJson->alert->error,"msg"=>$this->langJson->alert->used_code]);
+            }else{
+                $lang=$this->lang;
+                $coupon=Helpers::JsonDecodeRecursiveTheme1(Helpers::objectToArray($coupon));
+                $coupon=Helpers::array_to_object($coupon);
+                $apply = new \Darryldecode\Cart\CartCondition(array(
+                    'name' => $coupon->title->$lang,
+                    'type' => 'sale',
+                    'target' => 'total',
+                    'value' => "-".$coupon->discount_rate."%",
+                    'order' => 2
+                ));
+                \Cart::condition($apply);
+                return response()->json(["success"=>true,"title"=>$this->langJson->alert->success,"msg"=>$this->langJson->alert->apply_coupon]);
+            }
+        }else{
+            return response()->json(["success"=>false,"title"=>$this->langJson->alert->error,"msg"=>$this->langJson->alert->validator]);
+
+        }
+    }
+    public function removeCoupon(Request $request){
+      if(!empty($request->name)){
+          \Cart::removeCartCondition($request->name);
+          return response()->json(["success"=>true,"title"=>$this->langJson->alert->error,"msg"=>$this->langJson->alert->removed_code]);
+
+      }else{
+          return response()->json(["success"=>false,"title"=>$this->langJson->alert->error,"msg"=>$this->langJson->alert->validator]);
+      }
     }
 }

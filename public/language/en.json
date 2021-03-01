@@ -49,7 +49,9 @@
         "add_address": "add-address",
         "edit_address": "edit-address",
         "delete_address": "delete-address",
-        "render_address": "get-address"
+        "render_address": "get-address",
+        "apply_coupon": "apply-coupon",
+        "remove_coupon": "remove-coupon"
     },
     "login": {
         "login": "Login",
@@ -95,7 +97,13 @@
         "pass_null": "If you do not want to change the penalty, please leave this field blank!",
         "add_address": "Add Address",
         "edit_address": "Edit Address",
-        "delete_address": "Delete Address"
+        "delete_address": "Delete Address",
+        "coupon_code": "Coupon Code",
+        "expiration_date": "Expiration Date",
+        "rate": "Discount Rate",
+        "copy": "Copy Code",
+        "discount_coupon": "My Discount Coupons"
+
     },
     "category": {
         "showing": "Showing Pieces.",
@@ -117,7 +125,8 @@
         "delete": "Remove",
         "discount_coupon": "Discount Coupon",
         "discount_apply": "Apply Coupon",
-        "cart_summary": "Cart Summary"
+        "cart_summary": "Cart Summary",
+        "checkout": "Checkout Make"
     },
     "alert": {
         "pageNotFound": "The Page You Wanted To Access Could Not Be Found.",
@@ -154,7 +163,13 @@
         "cancel": "Cancel",
         "confirm": "Yes, Delete It",
         "remove_item": "Are You Sure You Want To Delete?",
-        "remove_item_desc": "If You Delete This Record, The Record Cannot Be Recovered."
+        "remove_item_desc": "If You Delete This Record, The Record Cannot Be Recovered.",
+        "copy": "Coupon Code Copied.",
+        "not_coupon": "You Have No Discount Coupons.",
+        "null_coupon": "Do not leave the Coupon Code field blank.",
+        "used_code": "You Have Used This Code Before.",
+        "apply_coupon": "Your Discount Coupon Has Been Successfully Applied",
+        "removed_code": "Removed from your Coupon Cart."
     },
     "menu": {
         "home": "HOME",

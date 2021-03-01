@@ -63,7 +63,9 @@
         "add_address": "adres-ekle",
         "edit_address": "adres-duzenle",
         "delete_address": "adres-sil",
-        "render_address": "adres-getir"
+        "render_address": "adres-getir",
+        "apply_coupon": "kupon-uygula",
+        "remove_coupon": "kupon-sil"
     },
     "login": {
         "login": "Giriş Yap",
@@ -95,7 +97,13 @@
         "pass_null": "Şifrenizi Değiştirmek İstemiyorsanız Bu Alanı Boş Bırakınız!",
         "add_address": "Adres Ekle",
         "edit_address": "Adres Düzenle",
-        "delete_address": "Adresi Sil"
+        "delete_address": "Adresi Sil",
+        "coupon_code": "Kupon Kodu",
+        "expiration_date": "Son Geçerlilik Tarihi",
+        "rate": "İndirim Oranı",
+        "copy": "Kodu Kopyala",
+        "discount_coupon": "İndirim Kuponlarım"
+
     },
     "category": {
         "showing": "Adet Ürün Gösteriliyor.",
@@ -110,7 +118,8 @@
         "delete": "Sil",
         "discount_coupon": "İndirim Kuponu",
         "discount_apply": "Kuponu Uygula",
-        "cart_summary": "Sepet Özeti"
+        "cart_summary": "Sepet Özeti",
+        "checkout": "Ödeme Yap"
     },
     "alert": {
         "pageNotFound": "Erişmek İstediğiniz Sayfa Bulunamadı.",
@@ -147,7 +156,15 @@
         "cancel": "İptal Et",
         "confirm": "Evet, Sil",
         "remove_item": "Silmek İstediğinize Emin misiniz?",
-        "remove_item_desc": "Bu Kaydı Silerseniz Kayıt Tekrar Geri Getirilemez."
+        "remove_item_desc": "Bu Kaydı Silerseniz Kayıt Tekrar Geri Getirilemez.",
+        "copy": "Kupon Kodu Kopyalandı.",
+        "not_coupon": "İndirim Kuponunuz Bulunmamaktadır.",
+        "null_coupon": "Kupon Kodu Alanını Boş Bırakmayınız.",
+        "used_code": "Bu Kodu Daha Önce Kullandınız. ",
+        "apply_coupon":"İndirim Kuponunuz Başarıyla Uygulandı",
+        "removed_code": "Kupon Sepetinizden Silinmiştir."
+
+
     },
     "contact": {
         "contact_us": "BİZİMLE İLETİŞİME GEÇİN",

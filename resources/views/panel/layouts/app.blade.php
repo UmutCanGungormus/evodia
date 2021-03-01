@@ -423,7 +423,7 @@
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="{{route("panel.home")}}" class="waves-effect waves-dark">
+                                <a href="{{route("panel.bank.index")}}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="fas fa-university"></i><b>D</b></span>
                                     <span class="pcoded-mtext">Banka İşlemleri</span>
                                     <span class="pcoded-mcaret"></span>

@@ -64,6 +64,8 @@ foreach ($languages as $lang) :
                 Route::post("/{$json->routes->edit_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "editAddress"])->name($json->routes->edit_address);
                 Route::post("/{$json->routes->delete_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "deleteAddress"])->name($json->routes->delete_address);
                 Route::post("/{$json->routes->render_address}", [\App\Http\Controllers\Theme\Account\indexController::class, "renderAddress"])->name($json->routes->render_address);
+                Route::post("/{$json->routes->apply_coupon}", [\App\Http\Controllers\Theme\Basket\indexController::class, "applyCoupon"])->name($json->routes->apply_coupon);
+                Route::post("/{$json->routes->remove_coupon}", [\App\Http\Controllers\Theme\Basket\indexController::class, "removeCoupon"])->name($json->routes->remove_coupon);
                 Route::get("/{$json->routes->logout}", [\App\Http\Controllers\Theme\Login\indexController::class, "logout"])->name($json->routes->logout);
             });
         });
@@ -124,6 +126,17 @@ Route::group(['namespace' => 'panel', "as" => "panel.", "prefix" => "panel", "mi
             Route::get("/datatable", [\App\Http\Controllers\Panel\Corporate\indexController::class, "datatable"])->name("datatable");
             Route::post("/ranksetter", [\App\Http\Controllers\Panel\Corporate\indexController::class, "rankSetter"])->name("ranksetter");
             Route::post("/isactive", [\App\Http\Controllers\Panel\Corporate\indexController::class, "isActiveSetter"])->name("isactive");
+        });
+            Route::group(["namespace" => "bank", "as" => "bank.", "prefix" => "bank", "title" => "Bankalar"], function () {
+            Route::get("/", [\App\Http\Controllers\Panel\Bank\indexController::class, "index"])->name("index");
+            Route::get("/create", [\App\Http\Controllers\Panel\Bank\indexController::class, "create"])->name("add");
+            Route::get("/update/{id}", [\App\Http\Controllers\Panel\Bank\indexController::class, "edit"])->name("edit");
+            Route::post("/update/{id}", [\App\Http\Controllers\Panel\Bank\indexController::class, "update"])->name("update");
+            Route::post("/create", [\App\Http\Controllers\Panel\Bank\indexController::class, "save"])->name("save");
+            Route::post("/delete", [\App\Http\Controllers\Panel\Bank\indexController::class, "delete"])->name("delete");
+            Route::get("/datatable", [\App\Http\Controllers\Panel\Bank\indexController::class, "datatable"])->name("datatable");
+            Route::post("/ranksetter", [\App\Http\Controllers\Panel\Bank\indexController::class, "rankSetter"])->name("ranksetter");
+            Route::post("/isactive", [\App\Http\Controllers\Panel\Bank\indexController::class, "isActiveSetter"])->name("isactive");
         });
         Route::group(["namespace" => "slider", "as" => "slider.", "prefix" => "slider", "title" => "Sliderlar"], function () {
             Route::get("/", [\App\Http\Controllers\Panel\Slider\indexController::class, "index"])->name("index");

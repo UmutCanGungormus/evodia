@@ -1,44 +1,45 @@
 <?php
 
-namespace App\Http\Controllers\Panel\OptionCategory;
+namespace App\Http\Controllers\Panel\Bank;
 
 use App\Helpers\Helpers;
 use App\Http\Controllers\Controller;
-use App\Models\Panel\OptionCategory;
+use App\Models\Panel\Bank;
 use App\Models\Panel\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+
     public function __construct(Session $session, Request $request)
     {
         $this->viewData = new \stdClass();
         $this->viewData->admin = Session::get("admin");
         $this->viewData->page = new \stdClass();
         $this->viewData->segment = $request->segment(2);
-        $this->viewData->page->title = "Ürün Kategorisi Listesi";
-        $this->viewData->page->description = "Bu Sayfada Sitenizin Ürün Kategorilerini Görebilirsiniz.";
+        $this->viewData->page->title = "Bankalar";
+        $this->viewData->page->description = "Bu Sayfada Sitenizin Bankalarını Görebilirsiniz.";
         $this->viewData->settings = Settings::where("isActive", 1)->first();
     }
 
     public function index()
     {
-        return view("panel.optionCategory.list.index")->with("data", $this->viewData);
+        return view("panel.bank.list.index")->with("data", $this->viewData);
     }
 
     public function create()
     {
-        $this->viewData->categories=OptionCategory::where("isActive",1)->get();
-        $this->viewData->page->title = "Varyasyon Kategorisi Ekle";
-        $this->viewData->page->description = "Sitenize Yeni Bir Varasyon Kategorisi Ekleyin.";
+        $this->viewData->page->title = "Banka Ekle";
+        $this->viewData->page->description = "Sitenize Yeni Bir Banka Ekleyin.";
         $this->viewData->settings_all = Settings::where("isActive", 1)->get();
 
-        return view("panel.optionCategory.add.index")->with("data", $this->viewData);
+        return view("panel.bank.add.index")->with("data", $this->viewData);
     }
 
     public function save(Request $request)
@@ -65,8 +66,8 @@ class indexController extends Controller
                             $extension = $v->extension();
                             $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
                             $fileNameWithExtension = $newFile . "." . $extension;
-                            $path = $v->storeAs("uploads/option_categories/{$strFileName}", $fileNameWithExtension, "public");
-                            $newPath= Helpers::webpConverter($extension,$path,"uploads/option_categories/".$strFileName,$newFile);
+                            $path = $v->storeAs("uploads/bank/{$strFileName}", $fileNameWithExtension, "public");
+                            $newPath= Helpers::webpConverter($extension,$path,"uploads/bank/".$strFileName,$newFile);
                             Storage::disk("public")->delete($path);
                             $data["img_url"][$k] = $newPath;
                             if (!$newPath) {
@@ -77,13 +78,12 @@ class indexController extends Controller
                 }
             }
             $data = Helpers::makeJson($data);
-            $data["seo_url"]=$seo_url;
-            $data["rank"] = OptionCategory::count() + 1;
+            $data["rank"] = Bank::count() + 1;
             $data["isActive"] = 1;
-            $add = OptionCategory::insert($data);
+            $add = Bank::insert($data);
             if ($add) {
                 $request->session()->flash("alert", ['status' => 'success', "msg" => "Ayarlarınız Başarıyla Eklendi.", "title" => "Başarılı!"]);
-                return redirect()->route("panel.optionCategory.index");
+                return redirect()->route("panel.bank.index");
             } else {
                 $this->viewData->languages = DB::table("languages")->get();
                 $request->session()->flash("alert", ['status' => 'error', "msg" => "Ayarlarınız Eklenirken Bir Hata Oluştu.", "title" => "Hata!"]);
@@ -95,15 +95,14 @@ class indexController extends Controller
     public function edit(Request $request, $id = null)
     {
         if ($id) {
-            $this->viewData->item = OptionCategory::where("id", $id)->first();
-            $this->viewData->categories=OptionCategory::where("isActive",1)->get();
+            $this->viewData->item = Bank::where("id", $id)->first();
             $this->viewData->item = Helpers::JsonDecodeRecursive($this->viewData->item);
             if (!empty($this->viewData->item)) {
                 $this->viewData->settings_all = Settings::where("isActive", 1)->get();
                 $this->viewData->languages = DB::table("languages")->get();
                 $this->viewData->page->title = $this->viewData->item->title->tr . " Sayfasını Düzenle";
                 $this->viewData->page->description = $this->viewData->item->title->tr . " Sayfasını Düzenleyin";
-                return view("panel.optionCategory.update.index")->with("data", $this->viewData);
+                return view("panel.bank.update.index")->with("data", $this->viewData);
             } else {
                 $request->session()->flash("alert", ['status' => 'error', "msg" => "Böyle Bir Kayıt Bulunamadı.", "title" => "Hata!"]);
                 return redirect()->back();
@@ -116,7 +115,7 @@ class indexController extends Controller
     public function update(Request $request, $id = null)
     {
 
-        $item = OptionCategory::where("id", $id)->first();
+        $item = Bank::where("id", $id)->first();
         if ($item) {
             $validator = Validator::make($request->all(), [
 
@@ -143,8 +142,8 @@ class indexController extends Controller
                                 $extension = $v->extension();
                                 $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
                                 $fileNameWithExtension = $newFile . "." . $extension;
-                                $path = $v->storeAs("uploads/option_categories/{$strFileName}", $fileNameWithExtension, "public");
-                                $newPath= Helpers::webpConverter($extension,$path,"uploads/option_categories/".$strFileName,$newFile);
+                                $path = $v->storeAs("uploads/bank/{$strFileName}", $fileNameWithExtension, "public");
+                                $newPath= Helpers::webpConverter($extension,$path,"uploads/bank/".$strFileName,$newFile);
                                 Storage::disk("public")->delete($path);
                                 if (!empty($data["img_url"]->$k)) {
                                     $data["img_url"]->$k = $newPath;
@@ -160,11 +159,10 @@ class indexController extends Controller
                 }
                 $data["img_url"] = (array)$data["img_url"];
                 $data = Helpers::makeJson($data);
-                $data["seo_url"]=$seo_url;
-                $update = OptionCategory::where("id", $id)->update($data);
+                $update = Bank::where("id", $id)->update($data);
                 if ($update) {
                     $request->session()->flash("alert", ['status' => 'success', "msg" => "Ayarlarınız Başarıyla Güncellendi.", "title" => "Başarılı!"]);
-                    return redirect()->route("panel.optionCategory.index");
+                    return redirect()->route("panel.bank.index");
                 } else {
                     $this->viewData->languages = DB::table("languages")->get();
                     $request->session()->flash("alert", ['status' => 'error', "msg" => "Ayarlarınız Güncellenirken Bir Hata Oluştu.", "title" => "Hata!"]);
@@ -181,46 +179,73 @@ class indexController extends Controller
     {
         $id = $request->id;
 
-        if (!empty($id)) {
-            $data = OptionCategory::where("id", $id)->first();
-            $data=json_decode($data->img_url);
-            $delete = OptionCategory::where("id", $id)->delete();
-            if ($delete) {
-                foreach ( $data as $item) {
-                    if (count(Storage::disk("public")->allFiles(Helpers::explodePath($item,2))) > 0) {
-                        Storage::disk("public")->deleteDirectory(Helpers::explodePath($item,2));
+            if (!empty($id)) {
+                $data = Bank::where("id", $id)->first();
+                $data=json_decode($data->img_url);
+                $delete = Bank::where("id", $id)->delete();
+                if ($delete) {
+                    foreach ( $data as $item) {
+                        if (count(Storage::disk("public")->allFiles(Helpers::explodePath($item,2))) > 0) {
+                            Storage::disk("public")->deleteDirectory(Helpers::explodePath($item,2));
+                        }
+                    }
+                    if ($request->ajax()) {
+                        return response()->json(["success" => true, "title" => "Başarılı!", "msg" => "Kayıt başarıyla Silindi"], 200, [], JSON_UNESCAPED_UNICODE);
+                    } else {
+                        $request->session()->flash("alert", ['status' => 'success', "msg" => "Kayıt Başarıyla Silindi.", "title" => "Başarılı!"]);
+                        return redirect()->back();
+                    }
+                } else {
+                    if ($request->ajax()) {
+                        return response()->json(["success" => false, "title" => "Başarısız!", "msg" => "Kayıt Silme İşlemi Sırasında Bir Hata Oluştu"], 200, [], JSON_UNESCAPED_UNICODE);
+                    } else {
+                        $request->session()->flash("alert", ['status' => 'error', "msg" => "Kayıt Silinemedi.", "title" => "Hata!"]);
+                        return redirect()->back();
                     }
                 }
-                if ($request->ajax()) {
-                    return response()->json(["success" => true, "title" => "Başarılı!", "msg" => "Kayıt başarıyla Silindi"], 200, [], JSON_UNESCAPED_UNICODE);
-                } else {
-                    $request->session()->flash("alert", ['status' => 'success', "msg" => "Kayıt Başarıyla Silindi.", "title" => "Başarılı!"]);
-                    return redirect()->back();
-                }
             } else {
                 if ($request->ajax()) {
-                    return response()->json(["success" => false, "title" => "Başarısız!", "msg" => "Kayıt Silme İşlemi Sırasında Bir Hata Oluştu"], 200, [], JSON_UNESCAPED_UNICODE);
+                    return response()->json(["success" => false, "title" => "Başarısız!", "msg" => "Böyle Bir Kayıt Yok"], 200, [], JSON_UNESCAPED_UNICODE);
                 } else {
-                    $request->session()->flash("alert", ['status' => 'error', "msg" => "Kayıt Silinemedi.", "title" => "Hata!"]);
+                    $request->session()->flash("alert", ['status' => 'error', "msg" => "Böyle Bir Kayıt Yok.", "title" => "Hata!"]);
                     return redirect()->back();
                 }
             }
-        } else {
-            if ($request->ajax()) {
-                return response()->json(["success" => false, "title" => "Başarısız!", "msg" => "Böyle Bir Kayıt Yok"], 200, [], JSON_UNESCAPED_UNICODE);
-            } else {
-                $request->session()->flash("alert", ['status' => 'error', "msg" => "Böyle Bir Kayıt Yok.", "title" => "Hata!"]);
-                return redirect()->back();
-            }
-        }
 
+    }
+
+    public function jsonGet($id)
+    {
+        $item = Bank::where("id", $id)->first();
+        $this->viewData->lang = $item->language;
+        $this->viewData->page->title = "Ayar Ekle";
+        $this->viewData->page->description = "Sitenize Yeni Bir Ayar Ekleyin.";
+        $this->viewData->languages = DB::table("languages")->get();
+        $this->viewData->content = json_decode(file_get_contents(public_path("language/" . $item->language . ".json"), "r"));
+        return view("panel.settings.json.index")->with("data", $this->viewData);
+    }
+
+    public function jsonPost(Request $request, $language = null)
+    {
+
+        $data = $request->except("_token");
+        $create = fopen(public_path("language/" . $language . ".json"), "w");
+        $create = fwrite($create, json_encode($data, JSON_UNESCAPED_UNICODE));
+
+        if ($create) {
+            $request->session()->flash("alert", ['status' => 'status', "msg" => "Dil Dosyanız Başarıyla Oluşturuldu.", "title" => "Hata!"]);
+            return redirect()->back();
+        } else {
+            $request->session()->flash("alert", ['status' => 'error', "msg" => "Dil Dosyanız Kayıt Edilemedi.", "title" => "Hata!"]);
+            return redirect()->back();
+        }
     }
 
     public function datatable(Request $request)
     {
 
         if ($request->ajax()) {
-            $data = OptionCategory::orderBy("rank")->get();
+            $data = Bank::orderBy("rank")->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -230,8 +255,8 @@ class indexController extends Controller
                         İşlemler
                       </button>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="' . route("panel.optionCategory.update", $row->id) . '">Kaydı Düzenle</a>
-                        <a data-url="' . route("panel.optionCategory.delete") . '" data-id="' . $row->id . '" class="dropdown-item delete-item" href="#">Kaydı Sil</a>
+                        <a class="dropdown-item" href="' . route("panel.bank.update", $row->id) . '">Kaydı Düzenle</a>
+                        <a data-url="' . route("panel.bank.delete") . '" data-id="' . $row->id . '" class="dropdown-item delete-item" href="#">Kaydı Sil</a>
                       </div>
                     </div>
                     ';
@@ -240,7 +265,7 @@ class indexController extends Controller
                 ->addColumn('isActive', function ($row) {
                     $btn = '
                     <div class="custom-control custom-switch">
-                      <input ' . ($row->isActive == 1 ? " checked " : "") . ' data-id="' . $row->id . '" data-url="' . route("panel.optionCategory.isactive") . '" type="checkbox" class="custom-control-input isActive" id="customSwitch' . $row->id . '">
+                      <input ' . ($row->isActive == 1 ? " checked " : "") . ' data-id="' . $row->id . '" data-url="' . route("panel.bank.isactive") . '" type="checkbox" class="custom-control-input isActive" id="customSwitch' . $row->id . '">
                       <label class="custom-control-label" for="customSwitch' . $row->id . '"></label>
                     </div>
                     ';
@@ -273,7 +298,7 @@ class indexController extends Controller
         if (!empty($data)):
             $durum = 1;
             foreach ($data["data"] as $item):
-                $update = OptionCategory::where("id", $item["id"])->update(["rank" => $item["position"]]);
+                $update = Bank::where("id", $item["id"])->update(["rank" => $item["position"]]);
                 if (!$update) {
                     $durum = 0;
                 }
@@ -292,10 +317,10 @@ class indexController extends Controller
         $data = $request->except("_token");
         if (!empty($data)):
 
-            $data = OptionCategory::where($data)->first();
+            $data = Bank::where($data)->first();
             if ($data) {
                 $isActive = ($data->isActive == 1 ? 0 : 1);
-                $update = OptionCategory::where("id", $data->id)->update(["isActive" => $isActive]);
+                $update = Bank::where("id", $data->id)->update(["isActive" => $isActive]);
                 if ($update) {
                     return response()->json(["success" => true, "title" => "Başarılı!", "msg" => "Güncelleme İşlemi Başarılı"], 200, [], JSON_UNESCAPED_UNICODE);
                 } else {

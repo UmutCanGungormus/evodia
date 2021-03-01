@@ -24,6 +24,13 @@
         <div class="cart_total">
             <h5>{{$langJson->home->sub_total}}: {{\Cart::getSubTotal()." ".$langJson->home->price}}</h5>
         </div>
+        @foreach(\Cart::getConditions() as $condition)
+            <p>{{$langJson->account->discount_coupon}}
+                <span>{{ $condition->getName()}} {{$condition->getValue()}}</span>
+                <a href="javascript:void(0)" data-id="{{$condition->getName()}}" class="delete-discount"><i class="fas fa-times"></i></a>
+
+            </p>
+        @endforeach
         <div class="cart_total mt-10">
             <h5>{{$langJson->home->total}}: {{\Cart::getTotal()." ".$langJson->home->price}}</h5>
         </div>

@@ -65,10 +65,10 @@ class indexController extends Controller
                             $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
                             $fileNameWithExtension = $newFile . "." . $extension;
                             $path = $v->storeAs("uploads/slider/{$strFileName}", $fileNameWithExtension, "public");
-                          // $newPath= Helpers::webpConverter($extension,$path,$strFileName,$newFile,100);
-                            //Storage::disk("public")->delete($path);
-                            $data["img_url"][$k] = $path;
-                            if (!$path) {
+                            $newPath= Helpers::webpConverter($extension,$path,"uploads/slider/".$strFileName,$newFile);
+                            Storage::disk("public")->delete($path);
+                            $data["img_url"][$k] = $newPath;
+                            if (!$newPath) {
                                 $status = 0;
                             }
                         }
@@ -138,14 +138,13 @@ class indexController extends Controller
                                     Storage::disk("public")->delete($item->img_url->$k);
                                 }
                                 $extension = $v->extension();
-                                $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
+                                $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                                $fileNameWithExtension = $newFile . "." . $extension;
                                 $path = $v->storeAs("uploads/slider/{$strFileName}", $fileNameWithExtension, "public");
-                                if (!empty($data["img_url"]->$k)) {
-                                    $data["img_url"]->$k = $path;
-                                } else {
-                                    $data["img_url"]->$k = $path;
-                                }
-                                if (!$path) {
+                                $newPath= Helpers::webpConverter($extension,$path,"uploads/slider/".$strFileName,$newFile);
+                                Storage::disk("public")->delete($path);
+                                $data["img_url"]->$k = $newPath;
+                                if (!$newPath) {
                                     $status = 0;
                                 }
                             }

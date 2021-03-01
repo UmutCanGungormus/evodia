@@ -63,12 +63,16 @@ class indexController extends Controller
                 foreach ($request->file() as $key => $file):
                     $strFileName = Str::slug($request->company_name);
                     $extension = $file->extension();
-                    $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
-                    $path = $file->storeAs("uploads/settings/{$key}/{$strFileName}", $fileNameWithExtension, "public");
-                    $data[$key] = $path;
-                    if (!$path) {
+                    $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                    $fileNameWithExtension = $newFile . "." . $extension;
+                    $path = $file->storeAs("uploads/settings/{$strFileName}", $fileNameWithExtension, "public");
+                    $newPath= Helpers::webpConverter($extension,$path,"uploads/settings/".$strFileName,$newFile);
+                    Storage::disk("public")->delete($path);
+                    $data[$key] = $newPath;
+                    if (!$newPath) {
                         $status = 0;
                     }
+
                 endforeach;
             }
             $add = Settings::insert($data);
@@ -127,10 +131,13 @@ class indexController extends Controller
                         Storage::disk("public")->delete($item->$key);
                         $strFileName = Str::slug($request->company_name);
                         $extension = $file->extension();
-                        $fileNameWithExtension = $strFileName . "-" . rand(0, 99999999999) . "-" . time() . "." . $extension;
-                        $path = $file->storeAs("uploads/settings/{$key}/{$strFileName}", $fileNameWithExtension, "public");
-                        $data[$key] = $path;
-                        if (!$path) {
+                        $newFile=$strFileName . "-" . rand(0, 99999999999) . "-" . time();
+                        $fileNameWithExtension = $newFile . "." . $extension;
+                        $path = $file->storeAs("uploads/settings/{$strFileName}", $fileNameWithExtension, "public");
+                        $newPath= Helpers::webpConverter($extension,$path,"uploads/settings/".$strFileName,$newFile);
+                        Storage::disk("public")->delete($path);
+                        $data[$key] = $newPath;
+                        if (!$newPath) {
                             $status = 0;
                         }
                     endforeach;

@@ -14,6 +14,7 @@ use App\Models\Theme\ProductCategory;
 use App\Models\Theme\Settings;
 use App\Models\Theme\User;
 use App\Models\Theme\UserAddress;
+use Carbon\Carbon;
 use Faker\Provider\UserAgent;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -62,10 +63,12 @@ class indexController extends Controller
         $this->viewData->address = $user->address;
         $this->viewData->favourites = Helpers::JsonDecodeRecursiveTheme1(Helpers::objectToArray($user->favourite));
         $this->viewData->favourites = Helpers::array_to_object($this->viewData->favourites);
-        $this->viewData->coupons = DiscountCoupon::where(function ($query) {
+        $today=Carbon::today()->format('Y-m-d');
+        $this->viewData->coupons = Helpers::JsonDecodeRecursiveTheme1(DiscountCoupon::where(function ($query) {
             return $query->where("user_id", Session::get("user")->id)
                 ->orwhere("user_id", 0);
-        })->where("isActive", 1)->get();
+        })->where("isActive", 1)->where("time",">=",$today)->with("UserCoupon")->has("UserCoupon","=",0)->get()->toArray());
+        $this->viewData->coupons=Helpers::array_to_object($this->viewData->coupons);
         return view("theme.account.index")->with([
             "viewData" => $this->viewData,
             "lang" => $this->lang,
